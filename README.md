@@ -99,14 +99,6 @@ Fed a **real, known-Normal** sample straight from the dataset:
 
 `Python` `Flask` `scikit-learn` `XGBoost` `TensorFlow / Keras` `joblib` `HTML/CSS/JS`
 
-## 🔮 What's Next
-
-- [ ] 🌐 Public deployment on Render
-- [ ] 🎛️ Hyperparameter tuning for XGBoost
-- [ ] 🔊 Robustness testing under noisy/real-world conditions
-- [ ] 📊 Live feature-importance chart in the UI
-
----
 
 <div align="center">
 
