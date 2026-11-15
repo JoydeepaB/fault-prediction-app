@@ -111,6 +111,6 @@ Fed a **real, known-Normal** sample straight from the dataset:
 <div align="center">
 
 ### 👤 Joydeepa Banik
-*B.Tech Mechanical Engineering · NIT Agartala*
+*B.Tech , NIT Agartala*
 
 </div>
