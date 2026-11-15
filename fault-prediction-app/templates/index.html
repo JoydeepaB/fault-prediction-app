@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bearing Fault Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; padding: 0 20px; }
+        label { display: block; margin-top: 10px; font-size: 14px; }
+        input { width: 100%; padding: 6px; margin-top: 2px; box-sizing: border-box; }
+        button { margin-top: 20px; padding: 10px 20px; cursor: pointer; }
+        #result { margin-top: 20px; font-size: 18px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Bearing Fault Prediction</h2>
+    <p>Enter the 10 extracted features for one vibration window:</p>
+
+    <label>Mean <input id="mean" type="number" step="any" value="0.01"></label>
+    <label>RMS <input id="rms" type="number" step="any" value="0.5"></label>
+    <label>Std Dev <input id="std" type="number" step="any" value="0.5"></label>
+    <label>Kurtosis <input id="kurtosis" type="number" step="any" value="3.0"></label>
+    <label>Skewness <input id="skewness" type="number" step="any" value="0.1"></label>
+    <label>Peak <input id="peak" type="number" step="any" value="2.0"></label>
+    <label>Crest Factor <input id="crest_factor" type="number" step="any" value="4.0"></label>
+    <label>Dominant Frequency <input id="dominant_freq" type="number" step="any" value="0.1"></label>
+    <label>Spectral Energy <input id="spectral_energy" type="number" step="any" value="500"></label>
+    <label>Spectral Entropy <input id="spectral_entropy" type="number" step="any" value="2.3"></label>
+
+    <button onclick="predict()">Predict</button>
+    <div id="result"></div>
+
+    <script>
+        async function predict() {
+            const ids = ["mean","rms","std","kurtosis","skewness","peak","crest_factor","dominant_freq","spectral_energy","spectral_entropy"];
+            const data = {};
+            ids.forEach(id => data[id] = document.getElementById(id).value);
+
+            const res = await fetch("/predict", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+            const json = await res.json();
+            document.getElementById("result").innerText = json.prediction
+                ? "Prediction: " + json.prediction
+                : "Error: " + json.error;
+        }
+    </script>
+</body>
+</html>
